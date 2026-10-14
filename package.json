@@ -1,0 +1,39 @@
+{
+  "name": "eve-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#*": "./agent/*",
+    "#evals/*": "./evals/*"
+  },
+  "scripts": {
+    "build": "eve build",
+    "dev": "eve dev",
+    "dev:headless": "eve dev --no-ui",
+    "dev:clean": "env -u NODE_OPTIONS eve dev",
+    "start": "eve start",
+    "typecheck": "tsc",
+    "doctor": "node scripts/doctor.mjs",
+    "redis:up": "docker start eve-redis || docker run -d --name eve-redis -p 6379:6379 redis:7-alpine",
+    "redis:down": "docker stop eve-redis",
+    "redis:cli": "docker exec -it eve-redis redis-cli",
+    "chat": "node scripts/chat.mjs",
+    "mock:model": "node scripts/mock-anthropic.mjs"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "^4.0.79",
+    "ai": "^7.0.140",
+    "eve": "^0.79.0",
+    "redis": "^5.10.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "24.x",
+    "just-bash": "^3.6.0",
+    "typescript": "^5.9.0"
+  },
+  "engines": {
+    "node": "24.x"
+  }
+}
